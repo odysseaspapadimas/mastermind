@@ -1,7 +1,7 @@
-const CorrectPosition = () => {
+const CorrectPosition = ({ amount }) => {
   
   
-  return <div className="cor-pos">{0}</div>;
+  return <div className="cor-pos">{amount}</div>;
 };
 
 export default CorrectPosition;

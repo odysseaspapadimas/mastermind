@@ -91,7 +91,7 @@ h1 {
 
 .row {
   display: flex;
-  margin: 20px;
+  margin: 0.8rem;
   max-width: 85vw;
 }
 

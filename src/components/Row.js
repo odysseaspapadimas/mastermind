@@ -4,10 +4,12 @@ import Color from "./Color";
 import CorrectPosition from "./CorrectPosition";
 import WrongPosition from "./WrongPosition";
 
-const Row = ({ id }) => {
-  const { progress } = useContext(ProgressContext);
+const Row = ({ id, compareRows }) => {
+  const { progress, setProgress } = useContext(ProgressContext);
 
   const [isCurrentRow, setIsCurrentRow] = useState(false); //Is this row the current game row
+
+  const [positions, setPositions] = useState([0, 0]); //wrongPos, corPos
 
   const [rowColors, setRowColors] = useState([]);
   const setColor = (color) => {
@@ -21,17 +23,34 @@ const Row = ({ id }) => {
       setIsCurrentRow(true);
       console.log("currow", id);
     }
+    if (progress.currentRow - 1 === id) {
+      console.log(rowColors);
+      const { wrongPos, corPos } = compareRows(rowColors, [
+        "green",
+        "orange",
+        "white",
+        "purple",
+      ]);
+      if (corPos === 4) {
+        setProgress((prevState) => ({
+          ...prevState,
+          won: true,
+        }));
+      }
+      let positionsArr = [wrongPos, corPos];
+      setPositions(positionsArr);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [progress.currentRow]);
 
   return (
     <div className="row">
-      <WrongPosition />
+      <WrongPosition amount={positions[0]} />
       <Color id={1} isCurrentRow={isCurrentRow} setColor={setColor} />
       <Color id={2} isCurrentRow={isCurrentRow} setColor={setColor} />
       <Color id={3} isCurrentRow={isCurrentRow} setColor={setColor} />
       <Color id={4} isCurrentRow={isCurrentRow} setColor={setColor} />
-      <CorrectPosition />
+      <CorrectPosition amount={positions[1]} />
     </div>
   );
 };

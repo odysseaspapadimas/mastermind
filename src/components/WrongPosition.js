@@ -1,7 +1,7 @@
 import React from "react";
 
-const WrongPosition = ({ amount, isCurRow }) => {
-  return <div className="wrong-pos">{isCurRow ? amount : 0}</div>;
+const WrongPosition = ({ amount }) => {
+  return <div className="wrong-pos">{amount}</div>;
 };
 
 export default WrongPosition;
