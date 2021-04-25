@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import CheckRow from "./components/CheckRow";
+import Row from "./components/Row";
+import { ProgressContext } from "./context/ProgressContext";
 
 function App() {
+  const [progress, setProgress] = useState({
+    currentRow: 1,
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>Mastermind</h1>
+      <ProgressContext.Provider value={{ progress, setProgress }}>
+        <Row id={9} />
+        <Row id={8} />
+        <Row id={7} />
+        <Row id={6} />
+        <Row id={5} />
+        <Row id={4} />
+        <Row id={3} />
+        <Row id={2} />
+        <Row id={1} />
+
+        <CheckRow />
+      </ProgressContext.Provider>
     </div>
   );
 }

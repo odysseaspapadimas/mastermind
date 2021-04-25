@@ -1,38 +1,159 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
+
+body {
+  background-color: rgb(20, 20, 20);
+  font-family: 'Montserrat', sans-serif;
+  color: white;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  color: #fff;
+}
+
+h1 {
+  margin: 0;
+}
+
+.piece {
+  border: 1px solid white;
+  padding: 20px;
+  margin: 0 25px;
+}
+
+.color {
+  border: 1px solid white;
+  padding: 10px;
+  margin: 10px;
+}
+
+.color-selector {
+  position: absolute;
+  margin-bottom: 102px;
+  display: flex;
+  background: rgb(170, 162, 162);
+  overflow: hidden;
+}
+
+
+.arrow {
+  position: absolute;
+  
+  margin-bottom: 52px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+
+  border-top: 8px solid #f00;
+}
+
+.gray {
+  background-color: gray;
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.green {
+  background-color: green;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.white {
+  background-color: white;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.black {
+  background-color: black;
+}
+
+.row {
+  display: flex;
+  margin: 20px;
+  max-width: 85vw;
+}
+
+.check-row-btn {
+  padding: 10px 20px;
+  background: teal;
   color: white;
+  border: none;
 }
 
-.App-link {
-  color: #61dafb;
+.wrong-pos {
+  background: #fff;
+  padding: 10px 30px;
+  color: black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.cor-pos {
+  background: red;
+  padding: 10px 30px
+}
+
+.hidden-row {
+  display: flex;
+  margin: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .piece {
+    margin: 0 12px;
+    padding: 16px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .wrong-pos {
+    padding: 8px 18px
+  }
+
+  .cor-pos {
+    padding: 8px 18px;
+  }
+
+  .color {
+    padding: 6px;
+    margin: 5px;
+  }
+
+  .color-selector {
+    margin-bottom: 78px;
+  }
+
+  .arrow {
+    position: absolute;
+    
+    margin-bottom: 45px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+  
+    border-top: 8px solid #f00;
+  }
+
+  .row {
+    margin: 10px;
   }
 }
