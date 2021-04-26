@@ -1,21 +1,33 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProgressContext } from "../context/ProgressContext";
 
 const CheckRow = () => {
-  const { setProgress } = useContext(ProgressContext);
+  const { progress, setProgress } = useContext(ProgressContext);
+  const [showWarning, setShowWarning] = useState(false);
 
   return (
-    <button
-      className="check-row-btn"
-      onClick={() =>
-        setProgress((prevState) => ({
-          ...prevState,
-          currentRow: prevState.currentRow + 1,
-        }))
-      }
-    >
-      Check Row
-    </button>
+    <>
+      <button
+        className="check-row-btn"
+        onClick={() => {
+          if (progress.selectedColorsAmount === 4) {
+            setShowWarning(false);
+            setProgress((prevState) => ({
+              ...prevState,
+              currentRow: prevState.currentRow + 1,
+            }));
+          } else {
+            console.log("You need to select all colors");
+            setShowWarning(true);
+          }
+        }}
+      >
+        Check Row
+      </button>
+      {showWarning && (
+        <p style={{ color: "red" }}>You need to select all colors first.</p>
+      )}
+    </>
   );
 };
 

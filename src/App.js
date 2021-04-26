@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import CheckRow from "./components/CheckRow";
 import Row from "./components/Row";
 import { ProgressContext } from "./context/ProgressContext";
+import Confetti from "react-confetti";
 
 function App() {
   const [progress, setProgress] = useState({
     currentRow: 1,
     won: false,
+    selectedColorsAmount: 0, //How many colors I have selected on the current row
   });
 
   const compareRows = (cur, hid) => {
@@ -24,18 +26,26 @@ function App() {
         }
       }
     }
-    //console.log(`positions`, wrongPos, " ", corPos);
+    if (corPos === 4) {
+      handleWin();
+    } else if (corPos !== 4 && progress.currentRow > 9) {
+      alert("loser");
+    }
     return { wrongPos, corPos };
   };
 
-  useEffect(() => {
-    if (progress.won) {
-      alert("GG EZ");
-    }
-  }, [progress.won]);
+  const handleWin = () => {
+    setProgress((prevState) => ({
+      ...prevState,
+      won: true,
+    }));
+  };
 
   return (
     <div className="app">
+      {progress.won && (
+        <Confetti width={window.innerWidth} height={window.innerHeight} />
+      )}
       <h1>Mastermind</h1>
       <ProgressContext.Provider value={{ progress, setProgress }}>
         <Row id={9} compareRows={compareRows} />
