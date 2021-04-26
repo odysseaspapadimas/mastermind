@@ -16,7 +16,6 @@ function App() {
   const compareRows = (cur, hid) => {
     let corPos = 0,
       wrongPos = 0;
-    console.log(cur, hid);
     for (let j = 0; j < 4; j++) {
       if (cur[j] === hid[j]) {
         corPos++;
@@ -62,6 +61,7 @@ function App() {
       hid[j] = remain[Math.floor(Math.random() * remain.length)];
       remain = remain.filter((color) => color !== hid[j]);
     }
+    console.log(hid);
     setProgress((prevState) => ({
       ...prevState,
       hiddenColors: hid,
@@ -75,8 +75,19 @@ function App() {
           <Confetti width={window.innerWidth} height={window.innerHeight} />
           <div className="win-modal-wrapper">
             <div className="win-modal">
-              <h1>Congratulations! You won!</h1>
-              <p>It took you {progress.currentRow - 1} tries!</p>
+              <div>
+                <h1>Congratulations! You won!</h1>
+                <p>
+                  It took you {progress.currentRow - 1}{" "}
+                  {progress.currentRow - 1 === 1 ? "try" : "tries"}!
+                </p>
+              </div>
+              <button
+                className="play-again-btn"
+                onClick={() => window.location.reload()}
+              >
+                Play Again
+              </button>
             </div>
           </div>
         </>

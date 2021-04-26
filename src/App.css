@@ -74,7 +74,7 @@ h1 {
 }
 
 .orange {
-  background-color: orange;
+  background-color: rgb(255, 102, 0);
 }
 
 .white {
@@ -139,6 +139,18 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.win-modal p {
+  margin-bottom: 40px;
+}
+
+.play-again-btn {
+  padding: 10px 16px;
+  background-color: teal;
+  color: white;
+  border-radius: 2px;
+  border: none;
 }
 
 @media only screen and (max-width: 600px) {

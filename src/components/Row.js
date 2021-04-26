@@ -26,7 +26,6 @@ const Row = ({ id, compareRows }) => {
   useEffect(() => {
     if (progress.currentRow === id) {
       setIsCurrentRow(true);
-      console.log("currow", id);
       setProgress((prevState) => ({
         ...prevState,
         canCheck: false,
@@ -35,7 +34,6 @@ const Row = ({ id, compareRows }) => {
       setIsCurrentRow(false);
     }
     if (progress.currentRow - 1 === id) {
-      console.log(rowColors);
       const { wrongPos, corPos } = compareRows(
         rowColors,
         progress.hiddenColors
