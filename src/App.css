@@ -9,11 +9,12 @@ body {
 
 .app {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
   flex-direction: column;
   color: #fff;
+  height: 90vh;
 }
 
 h1 {
@@ -36,7 +37,7 @@ h1 {
   position: absolute;
   margin-bottom: 102px;
   display: flex;
-  background: rgb(170, 162, 162);
+  background: rgb(0, 0, 0, 0.6);
   overflow: hidden;
 }
 
@@ -154,6 +155,10 @@ h1 {
 }
 
 @media only screen and (max-width: 600px) {
+  .app {
+    height: 75vh;
+  }
+  
   .piece {
     margin: 0 12px;
     padding: 16px;
