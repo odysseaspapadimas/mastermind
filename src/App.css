@@ -43,7 +43,7 @@ h1 {
 
 .arrow {
   position: absolute;
-  
+
   margin-bottom: 52px;
   width: 0;
   height: 0;
@@ -118,6 +118,29 @@ h1 {
   margin: 10px;
 }
 
+.win-modal-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(20, 20, 20, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.win-modal {
+  width: 50vw;
+  height: 50vh;
+  background-color: #fff;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 @media only screen and (max-width: 600px) {
   .piece {
     margin: 0 12px;
@@ -143,17 +166,22 @@ h1 {
 
   .arrow {
     position: absolute;
-    
+
     margin-bottom: 45px;
     width: 0;
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-  
+
     border-top: 8px solid #f00;
   }
 
   .row {
     margin: 10px;
+  }
+
+  .win-modal {
+    width: 90vw;
+    height: 45vh;
   }
 }

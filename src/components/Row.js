@@ -16,28 +16,30 @@ const Row = ({ id, compareRows }) => {
     let newArray = [...rowColors];
     newArray[color.id - 1] = color.color;
     setRowColors(newArray);
-    console.log(newArray.length);
-    setProgress((prevState) => ({
-      ...prevState,
-      selectedColorsAmount: newArray.length,
-    }));
+    if (!newArray.includes(undefined) && newArray.length === 4)
+      setProgress((prevState) => ({
+        ...prevState,
+        canCheck: true,
+      }));
   };
 
   useEffect(() => {
     if (progress.currentRow === id) {
       setIsCurrentRow(true);
       console.log("currow", id);
+      setProgress((prevState) => ({
+        ...prevState,
+        canCheck: false,
+      }));
     } else {
       setIsCurrentRow(false);
     }
     if (progress.currentRow - 1 === id) {
       console.log(rowColors);
-      const { wrongPos, corPos } = compareRows(rowColors, [
-        "green",
-        "orange",
-        "white",
-        "purple",
-      ]);
+      const { wrongPos, corPos } = compareRows(
+        rowColors,
+        progress.hiddenColors
+      );
       let positionsArr = [wrongPos, corPos];
       setPositions(positionsArr);
     }

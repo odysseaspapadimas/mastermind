@@ -28,11 +28,14 @@ const Color = ({ id, isCurrentRow, setColor }) => {
         <ColorSelector
           colorPick={colorPick}
           handleColorSelector={handleColorSelector}
+          isSelectingColor={isSelectingColor}
         />
       )}
       <div
         className={`piece ${selectedColor}`}
-        onClick={() => handleColorSelector(true)}
+        onClick={() => {
+          handleColorSelector(!isSelectingColor);
+        }}
       ></div>
     </div>
   );

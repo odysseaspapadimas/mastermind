@@ -10,7 +10,7 @@ const CheckRow = () => {
       <button
         className="check-row-btn"
         onClick={() => {
-          if (progress.selectedColorsAmount === 4) {
+          if (progress.canCheck) {
             setShowWarning(false);
             setProgress((prevState) => ({
               ...prevState,

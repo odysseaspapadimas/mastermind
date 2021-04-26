@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import CheckRow from "./components/CheckRow";
 import Row from "./components/Row";
@@ -9,7 +9,8 @@ function App() {
   const [progress, setProgress] = useState({
     currentRow: 1,
     won: false,
-    selectedColorsAmount: 0, //How many colors I have selected on the current row
+    canCheck: false, //Check if all 4 colors have been selected and you can check the row
+    hiddenColors: [],
   });
 
   const compareRows = (cur, hid) => {
@@ -41,10 +42,44 @@ function App() {
     }));
   };
 
+  useEffect(() => {
+    let colors = [
+      "gray",
+      "red",
+      "yellow",
+      "blue",
+      "green",
+      "orange",
+      "white",
+      "purple",
+      "black",
+    ];
+
+    let hid = ["white", "white", "white", "white"];
+    let remain = colors;
+    colors.splice(2, 1);
+    for (let j = 0; j < 4; j++) {
+      hid[j] = remain[Math.floor(Math.random() * remain.length)];
+      remain = remain.filter((color) => color !== hid[j]);
+    }
+    setProgress((prevState) => ({
+      ...prevState,
+      hiddenColors: hid,
+    }));
+  }, []);
+
   return (
     <div className="app">
       {progress.won && (
-        <Confetti width={window.innerWidth} height={window.innerHeight} />
+        <>
+          <Confetti width={window.innerWidth} height={window.innerHeight} />
+          <div className="win-modal-wrapper">
+            <div className="win-modal">
+              <h1>Congratulations! You won!</h1>
+              <p>It took you {progress.currentRow - 1} tries!</p>
+            </div>
+          </div>
+        </>
       )}
       <h1>Mastermind</h1>
       <ProgressContext.Provider value={{ progress, setProgress }}>
